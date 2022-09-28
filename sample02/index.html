@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Fonts loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400;700&display=swap" rel="stylesheet"> 
+  <title>GSAP Trial__BASIC SAMPLE 02</title>
+</head>
+<body>
+<main>
+<h1>GSAPのスタンダードな機能を用いた簡単なアニメーション 応用編</h1>
+
+<article>
+
+  <section>
+
+    <h2>Easing "back"</h2>
+    <p>
+      "back" イージングを用いると、いったん指定位置(値)までアニメーションした後<br/>
+      さらにアニメーションを継続し、指定位置(値)へと逆戻りします。
+    </p>
+    <div class="element__parent back_one">
+      <div class="rect">ease:"back"</div>
+    </div>
+
+    <h2>Easing "back" customize</h2>
+    <p>
+      "back" (などの特徴的な幾つかの) イージングは、加速・減速(in,out,inOut)指定と併用して強度をカスタマイズすることができます。<br/>
+      後にブラケット(丸括弧)をつけて、数値でカスタマイズします。
+      ease:"back.out(5)"
+    </p>
+    <div class="element__parent back_two">
+      <div class="rect">ease:"back" customize</div>
+    </div>
+
+  </section>
+
+  <section>
+
+    <h2>Easing "elastic"</h2>
+    <p>
+      "elastic"イージングは、バンジージャンプのような動きをします。<br/>
+      ゴム紐が伸び切るような動きで指定位置(値)の前後を収縮しながら停止します。
+    </p>
+    <div class="element__parent elastic_one">
+      <div class="rect">ease:"elastic"</div>
+    </div>
+
+    <h2>Easing "elastic"</h2>
+    <p>
+      "elastic"イージングもカスタマイズが可能です。<br/>
+      加速・減速(in,out,inOut)指定と併用し、ブラケットに前後収縮強度を２つの数値で指定します。
+      最初の数値は"振れ幅(amplitude)"を指定します。振れ幅は1以上を指定します。数値が大きくなるほど最初(最も大きく)の振れる距離が広がります。<br/>
+      ２番目の数値は"波の周期の程度(period) = 何回往復するか" を指定します。数値が小さいほど波がタイトで、より多くのサイクルが発生します。
+    </p>
+    <div class="element__parent elastic_two">
+      <div class="rect">ease:"elastic.out(2, 0.3)" customize</div>
+    </div>
+
+  </section>
+
+  <section>
+    <h2>Easing "bounce"</h2>
+    <p>
+      "bounce"イージングは、文字通り指定位置(値)に達したあとにバウンドします。<br/>
+      元位置(値)の座標に向かってバウンドし、elasticを戻り側で半分に切ったような動きをします。<br/>
+      静的なプロパティとして提供されており、"bounce.in","bounce.out","bounce.inOut"の３通りの指定ができます。
+    </p>
+    <div class="element__parent bounce_in">
+      <div class="rect">bounce:"bounce.in"</div>
+    </div>
+    <div class="element__parent bounce_out">
+      <div class="rect">bounce:"bounce.out"</div>
+    </div>
+    <div class="element__parent bounce_inout">
+      <div class="rect">bounce:"bounce.inOut"</div>
+    </div>
+  </section>
+
+</article>
+
+
+</main>
+
+
+<script type="module" src="./index.js" defer></script>
+
+</body>
+</html>
