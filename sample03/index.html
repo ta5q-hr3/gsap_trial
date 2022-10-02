@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Fonts loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400;700&display=swap" rel="stylesheet"> 
+  <title>GSAP Trial__BASIC SAMPLE 03</title>
+</head>
+<body>
+<main>
+
+<a href="/">戻る</a>
+
+<h1>GSAPのスタンダードな機能を用いた簡単なアニメーション 応用編2</h1>
+
+<article>
+
+  <section>
+
+    <h2>Stagger</h2>
+    <p>
+      "Stagger" 指定は連続した複数要素に指定した間隔(時間)で順番にアニメーション処理を実行します。<br/>
+      staggerプロパティには数値、オブジェクト({}での指定)、関数(function)を指定することができます。<br/>
+      例えば、 stagger: 0.1 を指定すると0.1 秒間隔で「要素が取得された順」にアニメーションを実行します。<br/>
+
+    </p>
+    <div class="element__parent stagger_one">
+      <div class="rect">stagger 01</div>
+      <div class="rect">stagger 02</div>
+      <div class="rect">stagger 03</div>
+      <div class="rect">stagger 04</div>
+      <div class="rect">stagger 05</div>
+      <div class="rect">stagger 06</div>
+      <div class="rect">stagger 07</div>
+      <div class="rect">stagger 08</div>
+    </div>
+    <p>
+      また、指定する値を負の値にすると、アニメーションを実行する順番を逆にすることができます。<br/>
+      stagger: -0.1
+    </p>
+    <div class="element__parent stagger_two">
+      <div class="rect">stagger 01</div>
+      <div class="rect">stagger 02</div>
+      <div class="rect">stagger 03</div>
+      <div class="rect">stagger 04</div>
+      <div class="rect">stagger 05</div>
+      <div class="rect">stagger 06</div>
+      <div class="rect">stagger 07</div>
+      <div class="rect">stagger 08</div>
+    </div>
+
+  </section>
+
+  <section>
+    <h2>Staggerへのオブジェクト指定</h2>
+    <p>
+      staggerパラメータへオブジェクト指定を行うことで、アニメーションを細かく指定することができます。<br/>
+      オブジェクト内には下記のパラメータを指定することができます。
+    </p>
+    <!--
+      amount
+      -->
+    <h3>amount</h3>
+    <p>
+      すべてのスタッガーに分割される時間の合計量（秒単位）です。つまり、量が 1 で、直線的にずれる要素が 100 個ある場合、各サブトゥイーンの開始時刻の間に 0.01 秒が生じます。各トゥイーン間の時間を指定したい場合は、代わりにeachプロパティを使用します。
+    </p>
+    <p>
+      staggerアニメーションの要する時間の合計量（秒単位で指定）です。
+    </p>
+    <div class="element__parent stagger_three">
+      <div class="rect">stagger 01</div>
+      <div class="rect">stagger 02</div>
+      <div class="rect">stagger 03</div>
+      <div class="rect">stagger 04</div>
+      <div class="rect">stagger 05</div>
+      <div class="rect">stagger 06</div>
+      <div class="rect">stagger 07</div>
+      <div class="rect">stagger 08</div>
+    </div>
+    <!--  -->
+    <h3>each</h3>
+    <!--  -->
+    <h3>from</h3>
+    <!--  -->
+    <h3>grid</h3>
+    <!--  -->
+    <h3>axis</h3>
+    <!--  -->
+    <h3>ease</h3>
+    <p>
+      通常のイージング指定と同じです。"Power4.out" こんな感じ。
+    </p>
+
+
+  </section>
+
+
+</article>
+
+
+</main>
+
+
+<script type="module" src="./index.js" defer></script>
+
+</body>
+</html>
