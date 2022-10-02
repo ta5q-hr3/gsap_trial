@@ -1,0 +1,71 @@
+@charset "utf-8";
+
+@use "../css/common" as common;
+
+html,body {
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 1.2rem;
+  line-height: 4rem;
+  text-align: center;
+
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 80vh;
+
+  article {
+    max-width:90%;
+    section {
+      h2 {
+        font-size: 1.1rem;
+      }
+      h3 {
+        font-size: 0.9rem;
+      }
+      p {
+        padding: 1rem 0;
+      }
+    }
+  }
+}
+
+.element__parent {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  
+  width: 100%;
+  background-color: #ddd;
+  box-sizing: border-box;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+
+
+  // クラス名が前方一致
+  div[class^="rect"] {
+/*    width: 100px;
+    height: 100px;*/
+    display: inline-block;
+    width: 88px;
+    height: 88px;
+    background-color: #444;
+    color:#fff;
+    font-size: 0.7rem;
+    //opacity: 0.8;
+    padding-top:2rem;
+    text-align: center;
+    word-break: break-all;
+
+  }
+
+
+}
