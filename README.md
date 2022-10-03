@@ -3,7 +3,7 @@
 learning about javascript liblary "GSAP" by GreenSock.
 
 
-GSAPのいろいろな試作を行って、作り方を学んでいます。
+GSAPのいろいろな試作を行って、使い方を学んでいます。
 
 実行環境にViteを使ってます。
 
