@@ -24,7 +24,7 @@
     <p>
       "Stagger" 指定は連続した複数要素に指定した間隔(時間)で順番にアニメーション処理を実行します。<br/>
       staggerプロパティには数値、オブジェクト({}での指定)、関数(function)を指定することができます。<br/>
-      例えば、 stagger: 0.1 を指定すると0.1 秒間隔で「要素が取得された順」にアニメーションを実行します。<br/>
+      例えば、 stagger: 0.1 を指定すると0.1 秒間隔で「渡したリスト(要素が取得された)順」にアニメーションを実行します。<br/>
 
     </p>
     <div class="element__parent stagger_one">
@@ -57,41 +57,175 @@
   <section>
     <h2>Staggerへのオブジェクト指定</h2>
     <p>
-      staggerパラメータへオブジェクト指定を行うことで、アニメーションを細かく指定することができます。<br/>
-      オブジェクト内には下記のパラメータを指定することができます。
+      staggerパラメータへオブジェクトで指定を行うことで、アニメーションを細かく指定することができます。<br/>
+      オブジェクト内には下記のプロパティを指定することができます。
     </p>
+
     <!--
       amount
       -->
     <h3>amount</h3>
     <p>
-      すべてのスタッガーに分割される時間の合計量（秒単位）です。つまり、量が 1 で、直線的にずれる要素が 100 個ある場合、各サブトゥイーンの開始時刻の間に 0.01 秒が生じます。各トゥイーン間の時間を指定したい場合は、代わりにeachプロパティを使用します。
-    </p>
-    <p>
-      staggerアニメーションの要する時間の合計量（秒単位で指定）です。
+      staggerする各アニメーション間隔の合計量指定プロパティです。秒単位で指定します。<br/>
+      指定値(秒数)を対象の要素数で分割した待機時間が各アニメーションの開始タイミング前に追加されます。
+      つまり、待機時間を総量で指定します。<br/>
+      例えば、100個並んだ要素へのstaggerに amount:1 を指定した場合、1秒を1/100にした = 0.01秒の待機がアニメーション開始前に追加されます。
+      以下の例では stagger: {amount:2} を指定しているため、各アニメーションのスタートに 2/8(=0.25)秒の遅延が発生しています。
     </p>
     <div class="element__parent stagger_three">
-      <div class="rect">stagger 01</div>
-      <div class="rect">stagger 02</div>
-      <div class="rect">stagger 03</div>
-      <div class="rect">stagger 04</div>
-      <div class="rect">stagger 05</div>
-      <div class="rect">stagger 06</div>
-      <div class="rect">stagger 07</div>
-      <div class="rect">stagger 08</div>
+      <div class="rect">amount : 2</div>
+      <div class="rect">amount : 2</div>
+      <div class="rect">amount : 2</div>
+      <div class="rect">amount : 2</div>
+      <div class="rect">amount : 2</div>
+      <div class="rect">amount : 2</div>
+      <div class="rect">amount : 2</div>
+      <div class="rect">amount : 2</div>
     </div>
-    <!--  -->
+
+    <!-- 
+      each
+      -->
     <h3>each</h3>
-    <!--  -->
+    <p>
+      staggerする各アニメーション間隔の直接指定プロパティです。秒単位で指定します。<br/>
+      指定値(秒数)の待機時間を対象要素のアニメーション開始タイミング前に追加します。つまり、個々のアニメーションの待機時間を指定します。<br/>
+      例えば、100個並んだ要素へのstaggerに each:1 を指定した場合、100回のアニメーションの前に1秒の待機がアニメーション開始前に追加されます。
+      (つまり、指定した待機時間x対象要素数分の追加時間が生まれます)<br/>
+      以下の例では stagger: {each:1} を指定しているため、各アニメーションのスタートに1秒の遅延が発生しています。
+    </p>
+    <div class="element__parent stagger_four">
+      <div class="rect">each : 1</div>
+      <div class="rect">each : 1</div>
+      <div class="rect">each : 1</div>
+      <div class="rect">each : 1</div>
+      <div class="rect">each : 1</div>
+      <div class="rect">each : 1</div>
+      <div class="rect">each : 1</div>
+      <div class="rect">each : 1</div>
+    </div>
+
+    <!-- 
+      from
+      -->
     <h3>from</h3>
-    <!--  -->
+    <p>
+      [String | Integer | Array]: 
+      The position in the Array from which the stagger will emanate. 
+      To begin with a particular element, for example, use the number 
+      representing that element's index in the target Array. 
+      So from:4 begins staggering at the 5th element in the Array 
+      (because Arrays use zero-based indexes). 
+      The animation for each element will begin based on the element's 
+      proximity to the "from" value in the Array 
+      (the closer it is, the sooner it'll begin). 
+      You can also use the following string values: "start", "center", 
+      "edges", "random", or "end" ("random" was added in version 3.1.0). 
+      If you have a grid defined, you can specify decimal values indicating 
+      the progress on each axis, like [0.5,0.5] would be the center, 
+      [1,0] would be the top right corner, etc. Default: 0. 
+      スタッガーが発生するArray内の位置。
+      例えば、特定の要素から開始するには、ターゲット配列のその要素のインデックスを表す数字を使用します。
+      つまり、"from:4" は、Array の 5 番目の要素からずらし始めるということです。
+      となります (Array はゼロベースのインデックスを使用するため)。
+      各要素のアニメーションは、その要素が「from」に近いかどうかに基づいて開始されます。各要素のアニメーションは、配列の "from" 値への要素の近さに基づいて開始されます。(に近いほど、早く開始されます。） 
+      以下の文字列値も使用可能です。"start"、"center",
+      "edges"、"random"、"end" (バージョン 3.1.0 で "random" が追加されました)。
+      グリッドが定義されている場合、各軸の進行状況を示す10進数値を指定することができます。0.5,0.5]が中心、[1,0]が中心というように、各軸の進捗を示す10進数値を指定できます。[1,0]は右上隅、といった具合です。
+      デフォルトは0です。
+
+      String(定型値)、Integer(数値)、Array(配列)で指定します。
+
+      javascriptのArrayIndexに則って[0]から始まるためです。
+
+
+      "random"について注意すべき点として、repeatさせても都度ランダムな開始位置となるわけではありません。
+      一度決まったランダムな順序が繰り返されます。
+    </p>
+    <!-- Index -->
+    <div class="element__parent stagger_five">
+      <div class="rect">from : "random"</div>
+      <div class="rect">from : "random"</div>
+      <div class="rect">from : "random"</div>
+      <div class="rect">from : "random"</div>
+      <div class="rect">from : "random"</div>
+      <div class="rect">from : "random"</div>
+      <div class="rect">from : "random"</div>
+      <div class="rect">from : "random"</div>
+    </div>
+    <!-- -->
+    <div class="element__parent stagger_six">
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+    </div>
+    <!-- -->
+    <div class="element__parent stagger_seven">
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+    </div>
+    <!-- -->
+    <div class="element__parent stagger_eight">
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+    </div>
+    <!-- -->
+    <div class="element__parent stagger_nine">
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+    </div>
+    <!-- -->
+    <div class="element__parent stagger_ten">
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+      <div class="rect">from : ""</div>
+    </div>
+
+    <!-- 
+      grid 
+    -->
     <h3>grid</h3>
+    <p>
+      [Array | "auto"]: If the elements are being displayed in a grid visually, indicate how many rows and columns there are (like grid:[9,15]) so that GSAP can calculate proximities accordingly. Or use grid:"auto" to have GSAP automatically calculate the rows and columns using element.getBoundingClientRect() (great for responsive layouts). Grids are assumed to flow from top left to bottom right layout-wise (like text that wraps at the right edge). Or if your elements aren't arranged in a uniform grid, check out the distributeByPosition() helper function we created. 
+    </p>
     <!--  -->
     <h3>axis</h3>
+    <p>
+      [string]: If you define a grid, staggers are based on each element's total distance to the "from" value on both the x and y axis, but you can focus on just one axis if you prefer ("x" or "y"). Use the demo above to see the effect (it makes more sense when you see it visually). 
+    </p>
     <!--  -->
     <h3>ease</h3>
     <p>
-      通常のイージング指定と同じです。"Power4.out" こんな感じ。
+      アニメーション開始時のイージングを指定できます。
+      指定方法は通常のイージング指定と同じです。"Power4.out" こんな感じ。
     </p>
 
 
