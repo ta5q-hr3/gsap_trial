@@ -22,7 +22,7 @@
 
     <h2>Stagger</h2>
     <p>
-      "Stagger" 指定は連続した複数要素に指定した間隔(時間)で順番にアニメーション処理を実行します。<br/>
+      "Stagger" 指定は連続した複数要素に指定した間隔(時間)で順番にアニメーション(トゥイーン)処理を実行します。<br/>
       staggerプロパティには数値、オブジェクト({}での指定)、関数(function)を指定することができます。<br/>
       例えば、 stagger: 0.1 を指定すると0.1 秒間隔で「渡したリスト(要素が取得された)順」にアニメーションを実行します。<br/>
 
@@ -111,20 +111,15 @@
     <h3>from</h3>
     <p>
       [String | Integer | Array]: 
-      The animation for each element will begin based on the element's 
-      proximity to the "from" value in the Array 
-      (the closer it is, the sooner it'll begin). 
-
       You can also use the following string values: "start", "center", 
       "edges", "random", or "end" ("random" was added in version 3.1.0). 
       If you have a grid defined, you can specify decimal values indicating 
       the progress on each axis, like [0.5,0.5] would be the center, 
       [1,0] would be the top right corner, etc. Default: 0. 
 
-      各要素のアニメーションは、その要素が「from」に近いかどうかに基づいて開始されます。
-      各要素のアニメーションは、配列の "from" 値への要素の近さに基づいて開始されます。(に近いほど、早く開始されます。） 
       以下の文字列値も使用可能です。"start"、"center", "edges"、"random"、"end" 
       (バージョン 3.1.0 で "random" が追加されました)。
+
       グリッドが定義されている場合、各軸の進行状況を示す10進数値を指定することができます。0.5,0.5]が中心、
       [1,0]が中心というように、各軸の進捗を示す10進数値を指定できます。[1,0]は右上隅、といった具合です。
       デフォルトは0です。
@@ -138,7 +133,8 @@
     <p>
       特定の要素からアニメーションを開始するには、対象配列内の要素indexを指定します。
       例えばfrom:4 を指定すると、対象配列の５番目の要素からアニメーションを開始します。<br/>
-      ※ javascriptのArrayIndexに則って[0]から始まるためです。
+      ※ javascriptのArrayIndexに則って[0]から始まるためです。<br/>
+      要素indexで指定した要素に近い順にアニメーションを実行します。上記例のIndex:4の次にはIndexが3と5の要素のアニメーションが実行されます。
     </p>
     <!-- Index -->
     <div class="element__parent stagger_five">
@@ -154,63 +150,81 @@
     <!-- from string -->
     <h4>String(定型値)での指定</h4>
     <p>
-      定型のString値で開始位置を指定することができます。
-      "random"について注意すべき点として、repeatさせても都度ランダムな開始位置となるわけではありません。
-      一度決まったランダムな順序が繰り返されます。
+      定型のString値で開始位置を指定することができます。<br/>
+      "start"、"center", "edges"、"random"、"end" の５つの定型値を指定することができます。
+    </p>
+    <!-- from:"start" -->
+    <p>
+      from:"start" を指定すると、対象とした配列の先頭(index [0])からアニメーションさせます。デフォルトの指定です。
     </p>
     <div class="element__parent stagger_six">
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
+      <div class="rect">from : "start"</div>
+      <div class="rect">from : "start"</div>
+      <div class="rect">from : "start"</div>
+      <div class="rect">from : "start"</div>
+      <div class="rect">from : "start"</div>
+      <div class="rect">from : "start"</div>
+      <div class="rect">from : "start"</div>
+      <div class="rect">from : "start"</div>
     </div>
-    <!-- -->
+    <!-- from:"center" -->
+    <p>
+      from:"center" を指定すると、対象とした配列の中央からアニメーションさせます。配列の長さが偶数の場合、中央となる要素が２つになります。<br/>
+      例えば、要素8つの配列の場合、中央のIndexが4,5の要素から同時にアニメーションを開始します。
+    </p>
     <div class="element__parent stagger_seven">
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
+      <div class="rect">from : "center"</div>
+      <div class="rect">from : "center"</div>
+      <div class="rect">from : "center"</div>
+      <div class="rect">from : "center"</div>
+      <div class="rect">from : "center"</div>
+      <div class="rect">from : "center"</div>
+      <div class="rect">from : "center"</div>
+      <div class="rect">from : "center"</div>
     </div>
-    <!-- -->
+    <!-- from:"edges" -->
+    <p>
+      from:"edges" を指定すると、対象とした配列の先頭と末端の要素から中央に向かってアニメーションさせます。要するに両端からアニメーションが始まります。"center"の逆です。
+    </p>
     <div class="element__parent stagger_eight">
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
+      <div class="rect">from : "edges"</div>
+      <div class="rect">from : "edges"</div>
+      <div class="rect">from : "edges"</div>
+      <div class="rect">from : "edges"</div>
+      <div class="rect">from : "edges"</div>
+      <div class="rect">from : "edges"</div>
+      <div class="rect">from : "edges"</div>
+      <div class="rect">from : "edges"</div>
     </div>
-    <!-- -->
+    <!-- from:"random" -->
+    <p>
+      from:"random" を指定すると、対象とした配列に対してランダムにアニメーション開始点を設定します。<br/>
+      "random"について注意すべき点として、repeatさせても都度ランダムな開始点となるわけではありません。
+      一度決まったランダムな順序が繰り返されます。("random"はversion 3.1.0 から追加されたプロパティです)
+    </p>
     <div class="element__parent stagger_nine">
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
+      <div class="rect">from : "random"</div>
+      <div class="rect">from : "random"</div>
+      <div class="rect">from : "random"</div>
+      <div class="rect">from : "random"</div>
+      <div class="rect">from : "random"</div>
+      <div class="rect">from : "random"</div>
+      <div class="rect">from : "random"</div>
+      <div class="rect">from : "random"</div>
     </div>
-    <!-- -->
+    <!-- end -->
+    <p>
+      from:"end" を指定すると、対象とした配列の末尾から先頭に向かってアニメーションさせます。負の値の数値で指定した場合と同じです。
+    </p>
     <div class="element__parent stagger_ten">
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
-      <div class="rect">from : ""</div>
+      <div class="rect">from : "end"</div>
+      <div class="rect">from : "end"</div>
+      <div class="rect">from : "end"</div>
+      <div class="rect">from : "end"</div>
+      <div class="rect">from : "end"</div>
+      <div class="rect">from : "end"</div>
+      <div class="rect">from : "end"</div>
+      <div class="rect">from : "end"</div>
     </div>
 
     <!-- 

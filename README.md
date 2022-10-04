@@ -14,6 +14,7 @@ viteの初期化は
 npm install vite を行って、必要なファイルを揃えた方がよかったかもしれません。
 その代わりpackage.json の script は自分で準備する必要あります。
 ↓↓↓
+npm スクリプト
 "dev": "vite",
 "build": "vite build",
 "preview":  "vite preview",

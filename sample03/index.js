@@ -7,6 +7,7 @@ import {gsap} from "gsap";
 */
 const elmStaggersOne = document.querySelectorAll(".element__parent.stagger_one .rect");
 
+// 落下アニメーションなので.from を使用しています。
 gsap.from(
   elmStaggersOne,
 
@@ -93,7 +94,7 @@ gsap.from(
 
 
 /*
-Standard Stagger 4
+Standard Stagger 5
 propaties : from index
 */
 const elmStaggersFive = document.querySelectorAll(".element__parent.stagger_five .rect");
@@ -105,14 +106,134 @@ gsap.from(
     opacity:0,
     y:-20,
     //scale:0.1,
-    ease:"power4.out",
+    ease:"bounce.out",
     duration:1,
     repeat:8,
     repeatDelay:1,
     stagger: {
       each:0.3,
       from:4,
-      //from:"random",
     }
   }
 );
+
+
+/*
+Standard Stagger 6
+propaties : from start
+*/
+const elmStaggerSix = document.querySelectorAll(".element__parent.stagger_six .rect");
+
+gsap.from(
+  elmStaggerSix,
+  {
+    opacity:0,
+    y:-20,
+    //scale:0.1,
+    ease:"bounce.out",
+    duration:1,
+    repeat:8,
+    repeatDelay:1,
+    stagger: {
+      each:0.3,
+      from:"start",
+    }
+  }
+);
+
+
+/*
+Standard Stagger 7
+propaties : from center
+*/
+const elmStaggerSeven = document.querySelectorAll(".element__parent.stagger_seven .rect");
+
+gsap.from(
+  elmStaggerSeven,
+  {
+    opacity:0,
+    y:-20,
+    //scale:0.1,
+    ease:"bounce.out",
+    duration:1,
+    repeat:8,
+    repeatDelay:1,
+    stagger: {
+      each:0.3,
+      from:"center",
+    }
+  }
+);
+
+
+/*
+Standard Stagger 8
+propaties : from edges
+*/
+const elmStaggerEight = document.querySelectorAll(".element__parent.stagger_eight .rect");
+
+gsap.from(
+  elmStaggerEight,
+  {
+    opacity:0,
+    y:-20,
+    //scale:0.1,
+    ease:"bounce.out",
+    duration:1,
+    repeat:8,
+    repeatDelay:1,
+    stagger: {
+      each:0.3,
+      from:"edges",
+    }
+  }
+);
+
+
+/*
+Standard Stagger 9
+propaties : from random
+*/
+const elmStaggerNine = document.querySelectorAll(".element__parent.stagger_nine .rect");
+
+gsap.from(
+  elmStaggerNine,
+  {
+    opacity:0,
+    y:-20,
+    //scale:0.1,
+    ease:"bounce.out",
+    duration:1,
+    repeat:8,
+    repeatDelay:1,
+    stagger: {
+      each:0.3,
+      from:"random",
+    }
+  }
+);
+
+
+/*
+Standard Stagger 10
+propaties : from ten
+*/
+const elmStaggerTen = document.querySelectorAll(".element__parent.stagger_ten .rect");
+
+gsap.from(
+  elmStaggerTen,
+  {
+    opacity:0,
+    y:-20,
+    //scale:0.1,
+    ease:"bounce.out",
+    duration:1,
+    repeat:8,
+    repeatDelay:1,
+    stagger: {
+      each:0.3,
+      from:"end",
+    }
+  }
+);
+
