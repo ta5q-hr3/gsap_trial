@@ -94,7 +94,7 @@ gsap.from(
 
 /*
 Standard Stagger 4
-propaties : each
+propaties : from index
 */
 const elmStaggersFive = document.querySelectorAll(".element__parent.stagger_five .rect");
 
@@ -111,7 +111,8 @@ gsap.from(
     repeatDelay:1,
     stagger: {
       each:0.3,
-      from:"random",
+      from:4,
+      //from:"random",
     }
   }
 );
