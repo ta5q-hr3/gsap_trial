@@ -237,3 +237,28 @@ gsap.from(
   }
 );
 
+
+/*
+Standard Stagger 11
+propaties : from end
+*/
+const elmStaggerEleven = document.querySelectorAll(".element__parent.stagger_eleven .rect");
+
+gsap.from(
+  elmStaggerEleven,
+  {
+    opacity:0,
+    y:-20,
+    //scale:0.1,
+    ease:"bounce.out",
+    duration:1,
+    repeat:8,
+    repeatDelay:1,
+    stagger: {
+      each:0.1,
+      grid:"auto",
+      from:[0.5,0.5],
+    }
+  }
+);
+
