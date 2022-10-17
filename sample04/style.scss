@@ -25,6 +25,10 @@ main {
   article {
     max-width:90%;
     section {
+      section {
+        padding-left: 1rem;
+        border-left: 1px solid #56799f;
+      }
       h2 {
         font-size: 1.1rem;
         font-weight:bold;
@@ -44,6 +48,14 @@ main {
       }
     }
   }
+}
+
+pre {
+  background-color: #333;
+  color:#fff;
+  font-size:0.9rem;
+  letter-spacing: 0.15rem;
+  padding:1rem;
 }
 
 .element__parent {

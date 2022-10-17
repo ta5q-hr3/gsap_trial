@@ -28,106 +28,207 @@
     <!-- 
       grid 
     -->
-    <h3>grid</h3>
-    <p>
-      [Array | "auto"]: 
-      If the elements are being displayed in a grid visually, 
-      indicate how many rows and columns there are (like grid:[9,15]) 
-      so that GSAP can calculate proximities accordingly. 
-      Or use grid:"auto" to have GSAP automatically calculate the rows 
-      and columns using element.
-      getBoundingClientRect() (great for responsive layouts). 
-      Grids are assumed to flow from top left to bottom right layout-wise (like text that wraps at the right edge). 
-      Or if your elements aren't arranged in a uniform grid, 
-      check out the distributeByPosition() helper function we created. 
-    </p>
-    <div class="element__parent grid">
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
+    <section>
+      <h3>grid</h3>
+      <p>
+        gridプロパティには配列指定と、定型値"auto"を指定できます。<br/>
+        要素の列がグリッド型に(整理された状態で)表示されている場合、"grid"プロパティへ幾つの行と列があるのかを(以下の様に)示すことで、
+        GSAPはその指定に応じて近接度合い(gridトゥイーン開始位置=起点)を計算することができます。
+        <br/>
+        もしくは、grid:"auto" を使用することで、GSAPは要素の絶対座標位置を取得する 
+        <a href="https://developer.mozilla.org/ja/docs/Web/API/Element/getBoundingClientRect">element.getBoundingClientRect()</a>
+        関数を使用して行と列を自動的に計算します。(レスポンシブレイアウトに最適) <br/>
+        もしも要素の列が整ったグリッドに配置されていない場合(ランダムであったり、不均一な配置の場合)には、
+        <a href="https://codepen.io/GreenSock/pen/gyWrPO?editors=0010">distributeByPosition()ヘルパー関数</a>
+        が用意されているので、参考にしてみてください。
+      </p>
+      <pre>grid:[9,15]</pre>
+      <div class="element__parent grid">
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
 
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
 
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
 
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
 
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-      <div class="rect">grid : "auto"</div>
-    </div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+        <div class="rect">grid : "auto"</div>
+      </div>
+
+    </section>
+
+    <!-- 
+      axis 
+    -->
+    <section>
+      <h3>axis</h3>
+      <p>
+        axisプロパティには string値 "x"と"y" を指定することができます。<br/>
+        gridプロパティを定義したとき、
+        スタッガートゥイーンの伝播方向は
+        from プロパティに指定されている(あるいはデフォルトの"start"の) x軸とy軸 の合計距離に基づきます。
+        <br/>
+        axisプロパティを使用することで、x(横方向)、y(縦方向)のどちらか片方の軸に絞って
+        スタッガートゥイーンの伝播方向を指定することができます。
+
+        <br/>
+        以下のデモは、上述(grid)のデモに axis:"x" を追加しています。
+      </p>
+      <div class="element__parent axis_x">
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+        <div class="rect">axis : "x"</div>
+      </div>
+      <p>
+        以下のデモは、上述(grid)のデモに axis:"y" を追加しています。
+      </p>
+      <div class="element__parent axis_y">
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+        <div class="rect">axis : "y"</div>
+      </div>
+
+    </section>
+
+    <!-- 
+      ease 
+    -->
+    <section>
+      <h3>ease</h3>
+      <p>
+        [String | Function]: 
+        The ease that distributes the start times of the animations. 
+        So "power2" would start out with bigger gaps 
+        and then get more tightly clustered toward the end. 
+        Default: "none". 
+        <br>
+        <br>
+        <br>
+        アニメーション開始時のイージングを指定できます。
+        指定方法は通常のイージング指定と同じです。"Power4.out" こんな感じ。
+        <br/>
+        デフォルトは"none"です。
+      </p>
+      <div class="element__parent ease">
+        <div class="rect">gridEase : "auto"</div>
+        <div class="rect">gridEase : "auto"</div>
+        <div class="rect">gridEase : "auto"</div>
+        <div class="rect">gridEase : "auto"</div>
+        <div class="rect">gridEase : "auto"</div>
+        <div class="rect">gridEase : "auto"</div>
+        <div class="rect">gridEase : "auto"</div>
+        <div class="rect">gridEase : "auto"</div>
+      </div>
+    </section>
+
+    <!-- 
+      repeat
+    -->
+    <section>
+      <h3>repeat</h3>
+      <p>
+        Repeats immediately, not waiting for the other staggered animations to finish.
+
+        If you put your repeat in the top level of the vars object of your tween like gsap.to(... {repeat:-1, stagger:{...}), it waits for all of the sub-tweens to finish before repeating the WHOLE sequence, but if you prefer to have each sub-tween repeat independently (so that as soon as each one completes, it immediately repeats itself), simply nest the repeat (and yoyo if necessary) inside the advanced stagger object, like gsap.to(... {stagger:{repeat:-1, ...}});
+        アニメーション開始時のイージングを指定できます。
+        指定方法は通常のイージング指定と同じです。"Power4.out" こんな感じ。
+      </p>
+      <div class="element__parent gridRepeat">
+        <div class="rect">gridRepeat : "auto"</div>
+        <div class="rect">gridRepeat : "auto"</div>
+        <div class="rect">gridRepeat : "auto"</div>
+        <div class="rect">gridRepeat : "auto"</div>
+        <div class="rect">gridRepeat : "auto"</div>
+        <div class="rect">gridRepeat : "auto"</div>
+        <div class="rect">gridRepeat : "auto"</div>
+        <div class="rect">gridRepeat : "auto"</div>
+      </div>
+
+    </section>
+
 
   </section>
-
-  <!-- 
-    axis 
-  -->
-  <section>
-    <h3>axis</h3>
-    <p>
-      [string]: 
-      If you define a grid, staggers are based on each element's total distance to the "from" value on both the x and y axis, but you can focus on just one axis if you prefer ("x" or "y"). Use the demo above to see the effect (it makes more sense when you see it visually). 
-    </p>
-  </section>
-
-  <!-- 
-    ease 
-  -->
-  <section>
-    <h3>ease</h3>
-    <p>
-      アニメーション開始時のイージングを指定できます。
-      指定方法は通常のイージング指定と同じです。"Power4.out" こんな感じ。
-    </p>
-
-  </section>
-
-  <!-- 
-    repeat
-  -->
-  <section>
-    <h3>repeat</h3>
-    <p>
-      Repeats immediately, not waiting for the other staggered animations to finish.
-
-      If you put your repeat in the top level of the vars object of your tween like gsap.to(... {repeat:-1, stagger:{...}), it waits for all of the sub-tweens to finish before repeating the WHOLE sequence, but if you prefer to have each sub-tween repeat independently (so that as soon as each one completes, it immediately repeats itself), simply nest the repeat (and yoyo if necessary) inside the advanced stagger object, like gsap.to(... {stagger:{repeat:-1, ...}});
-      アニメーション開始時のイージングを指定できます。
-      指定方法は通常のイージング指定と同じです。"Power4.out" こんな感じ。
-    </p>
-
-  </section>
-
 
 </article>
 
