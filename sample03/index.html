@@ -60,6 +60,20 @@
       staggerパラメータへオブジェクトで指定を行うことで、アニメーションを細かく指定することができます。<br/>
       オブジェクト内には下記のプロパティを指定することができます。
     </p>
+    <pre>
+      gsap.from(
+        variable,
+        {
+          ...
+          stagger: {
+            amount:2,
+            each:0.1,
+            from:[0.3,0.4],
+            grid:"auto",
+          }
+        }
+      );
+    </pre>
     <section>
       <!--
         amount
@@ -222,12 +236,17 @@
       <section>
         <h4>Array(配列)での指定</h4>
         <p>
-          後述する grid: 指定を併用している場合、
-          fromプロパティへ各軸の進捗を示す10進数の値を配列で指定することができます。<br/>
+          後述する grid: 指定を併用している場合、トゥイーンの起点を
+          fromプロパティへx軸、y軸の深度を示す値(0〜1)の配列で指定することができます。
+        </p>
+        <pre>
+          from : [x,y]
+        </pre>
+        <p>
           たとえば from : [0.5,0.5] を指定すると中心から、[1,0]は右上、[0,1]は左下です。
           デフォルトの値は0 ([0,0]...左上) です。
           <br/>
-          要するに、gridパラメータにおけるアニメーション開始位置の指定にfromパラメータを使用することができます。
+          要するに、gridプロパティにおけるアニメーション開始位置の指定にfromプロパティを使用することができます。
         </p>
         <p>
           <!-- SVG Graph width="100%" height="100%" viewBox="0 0 300 300" -->
@@ -240,32 +259,32 @@
         </p>
 
         <div class="element__parent stagger_eleven">
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
 
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
 
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
-          <div class="rect">from : [0.5,0.5], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
+          <div class="rect">from : [0.3,0.4], grid : "auto"</div>
         </div>
 
 

@@ -37,7 +37,7 @@
         <br/>
         もしくは、grid:"auto" を使用することで、GSAPは要素の絶対座標位置を取得する 
         <a href="https://developer.mozilla.org/ja/docs/Web/API/Element/getBoundingClientRect">element.getBoundingClientRect()</a>
-        関数を使用して行と列を自動的に計算します。(レスポンシブレイアウトに最適) <br/>
+        関数を使用して行と列を自動的に計算します。(要素の並び方が固定でないときがある場合=レスポンシブレイアウト に最適) <br/>
         もしも要素の列が整ったグリッドに配置されていない場合(ランダムであったり、不均一な配置の場合)には、
         <a href="https://codepen.io/GreenSock/pen/gyWrPO?editors=0010">distributeByPosition()ヘルパー関数</a>
         が用意されているので、参考にしてみてください。
@@ -102,6 +102,7 @@
         gridプロパティを定義したとき、
         スタッガートゥイーンの伝播方向は
         from プロパティに指定されている(あるいはデフォルトの"start"の) x軸とy軸 の合計距離に基づきます。
+        (何も指定が無ければ起点から放射状にトゥイーンが広がります)
         <br/>
         axisプロパティを使用することで、x(横方向)、y(縦方向)のどちらか片方の軸に絞って
         スタッガートゥイーンの伝播方向を指定することができます。
@@ -177,28 +178,38 @@
     <section>
       <h3>ease</h3>
       <p>
-        [String | Function]: 
-        The ease that distributes the start times of the animations. 
-        So "power2" would start out with bigger gaps 
-        and then get more tightly clustered toward the end. 
-        Default: "none". 
-        <br>
-        <br>
-        <br>
-        アニメーション開始時のイージングを指定できます。
-        指定方法は通常のイージング指定と同じです。"Power4.out" こんな感じ。
+        "ease" プロパティには定型値、関数を指定することができます。<br/>
+        easeプロパティに指定された内容によって、各要素のトゥイーンの開始タイミング(伝播していくタイミング)が
+        変化します。
+        <br/>
+        例えば "power2.out" を指定した場合、適用要素列の序盤でのトゥイーン伝播が緩やかになり(イージングの最初の緩いカーブ)、
+        後半に向かうにつれてよりタイトな伝播となります。
+        <br/>
+        指定方法は通常のイージング指定と同じです。(最初が小文字な点に注意) "power2.out" ← こんな感じ。
         <br/>
         デフォルトは"none"です。
       </p>
-      <div class="element__parent ease">
-        <div class="rect">gridEase : "auto"</div>
-        <div class="rect">gridEase : "auto"</div>
-        <div class="rect">gridEase : "auto"</div>
-        <div class="rect">gridEase : "auto"</div>
-        <div class="rect">gridEase : "auto"</div>
-        <div class="rect">gridEase : "auto"</div>
-        <div class="rect">gridEase : "auto"</div>
-        <div class="rect">gridEase : "auto"</div>
+      <p>ease:"power2.out"</p>
+      <div class="element__parent easeOne">
+        <div class="rect">grid ease: "power2.out"</div>
+        <div class="rect">grid ease: "power2.out"</div>
+        <div class="rect">grid ease: "power2.out"</div>
+        <div class="rect">grid ease: "power2.out"</div>
+        <div class="rect">grid ease: "power2.out"</div>
+        <div class="rect">grid ease: "power2.out"</div>
+        <div class="rect">grid ease: "power2.out"</div>
+        <div class="rect">grid ease: "power2.out"</div>
+      </div>
+      <p>ease:"slow"</p>
+      <div class="element__parent easeTwo">
+        <div class="rect">grid ease: "slow"</div>
+        <div class="rect">grid ease: "slow"</div>
+        <div class="rect">grid ease: "slow"</div>
+        <div class="rect">grid ease: "slow"</div>
+        <div class="rect">grid ease: "slow"</div>
+        <div class="rect">grid ease: "slow"</div>
+        <div class="rect">grid ease: "slow"</div>
+        <div class="rect">grid ease: "slow"</div>
       </div>
     </section>
 
@@ -208,21 +219,58 @@
     <section>
       <h3>repeat</h3>
       <p>
-        Repeats immediately, not waiting for the other staggered animations to finish.
+        
+        Repeats immediately, 
+        not waiting for the other staggered animations to finish.
+        <br>
+        Staggerのオブジェクト指定にRepeatを使用すると、
+        他のStaggerアニメーションの終了を待つことなく直ぐにリピートします。
 
-        If you put your repeat in the top level of the vars object of your tween like gsap.to(... {repeat:-1, stagger:{...}), it waits for all of the sub-tweens to finish before repeating the WHOLE sequence, but if you prefer to have each sub-tween repeat independently (so that as soon as each one completes, it immediately repeats itself), simply nest the repeat (and yoyo if necessary) inside the advanced stagger object, like gsap.to(... {stagger:{repeat:-1, ...}});
-        アニメーション開始時のイージングを指定できます。
-        指定方法は通常のイージング指定と同じです。"Power4.out" こんな感じ。
+        <br>
+        <br>
+
+        If you put your repeat in the top level of the vars object 
+        of your tween like gsap.to(... {repeat:-1, stagger:{...}), 
+
+        it waits for all of the sub-tweens to finish 
+        before repeating the WHOLE sequence, 
+        <br>
+
+        staggerプロパティと同改装に repeat を指定した場合、<br/>
+        (例えば gsap.to(... {repeat:-1, stagger:{...}) といった感じ)
+        全てのサブトゥイーンが終了するのを待って、全てのシーケンスを繰り返し(リピートし)ます。
+        <br>
+
+
+        but if you prefer to have each sub-tween repeat independently 
+        (so that as soon as each one completes, 
+        it immediately repeats itself), 
+        simply nest the repeat (and yoyo if necessary) inside 
+        the advanced stagger object, 
+        like gsap.to(... {stagger:{repeat:-1, ...}});
+
+        gsap.to(... {repeat:-1, stagger:{...})のようにtweenのvarsオブジェクトのトップレベルに
+        リピートを配置すると、
+        すべてのサブtweenが終了してからシーケンス全体を繰り返しますが、
+        それぞれのサブtweenを独立して繰り返したい場合（それぞれが完了するとすぐに繰り返すように）、
+        次のように高度なstaggerオブジェクト内にリピート（および必要に応じてyoyo）ネストするだけで、
+        gsap.to(... {repeat:-1, stagger:})のように繰り返すオブジェクトは、
+        すべてのtweenが完全に終わるまで待機します。 to(... {stagger:{repeat:-1, ...}}); 
+        同じことがコールバック（onUpdate, onComplete, onStartなど）にも当てはまります 
+        - staggerオブジェクトの内部に含めると、要素ごとに発火します。
+        これは、高度なスタッガーオブジェクトがサブツイストのためのvarsオブジェクトであるのと
+        ほぼ同じと考えてください。
+
       </p>
       <div class="element__parent gridRepeat">
-        <div class="rect">gridRepeat : "auto"</div>
-        <div class="rect">gridRepeat : "auto"</div>
-        <div class="rect">gridRepeat : "auto"</div>
-        <div class="rect">gridRepeat : "auto"</div>
-        <div class="rect">gridRepeat : "auto"</div>
-        <div class="rect">gridRepeat : "auto"</div>
-        <div class="rect">gridRepeat : "auto"</div>
-        <div class="rect">gridRepeat : "auto"</div>
+        <div class="rect">stagger{ repeat:8, }</div>
+        <div class="rect">stagger{ repeat:8, }</div>
+        <div class="rect">stagger{ repeat:8, }</div>
+        <div class="rect">stagger{ repeat:8, }</div>
+        <div class="rect">stagger{ repeat:8, }</div>
+        <div class="rect">stagger{ repeat:8, }</div>
+        <div class="rect">stagger{ repeat:8, }</div>
+        <div class="rect">stagger{ repeat:8, }</div>
       </div>
 
     </section>

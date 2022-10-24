@@ -256,8 +256,9 @@ gsap.from(
     repeatDelay:1,
     stagger: {
       each:0.1,
+      // from array with "grid" propaty
       grid:"auto",
-      from:[0.5,0.5],
+      from:[0.3,0.4],
     }
   }
 );

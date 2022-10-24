@@ -64,6 +64,16 @@ main {
   }
 }
 
+pre {
+  background-color: #333;
+  border: 1px solid #56799f;
+  box-sizing: border-box;
+  color:#fff;
+  font-size:0.9rem;
+  letter-spacing: 0.15rem;
+  padding:1rem;
+}
+
 .element__parent {
   display:flex;
   justify-content: center;

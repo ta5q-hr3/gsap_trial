@@ -86,25 +86,51 @@ gsap.from(
 
 /*
 Standard Stagger 14
-propaties : axis y
+propaties : ease (1)
 */
-const elmStaggerEase = document.querySelectorAll(".element__parent.ease .rect");
+const elmStaggerEaseOne = document.querySelectorAll(".element__parent.easeOne .rect");
 
 gsap.from(
-  elmStaggerEase,
+  elmStaggerEaseOne,
   {
     opacity:0,
     //y:-20,
     scale:0.1,
     ease:"power4.out",
-    duration:1,
+    duration:2,
     repeat:8,
     repeatDelay:1,
     stagger: {
       each:0.1,
       from:"center",
       grid:"auto",
-      ease:"power4.out",
+      ease:"power2.out",
+    }
+  }
+);
+
+
+/*
+Standard Stagger 15
+propaties : ease (2)
+*/
+const elmStaggerEaseTwo = document.querySelectorAll(".element__parent.easeTwo .rect");
+
+gsap.from(
+  elmStaggerEaseTwo,
+  {
+    opacity:0,
+    //y:-20,
+    scale:0.1,
+    ease:"power4.out",
+    duration:2,
+    repeat:8,
+    repeatDelay:1,
+    stagger: {
+      each:0.1,
+      from:"center",
+      grid:"auto",
+      ease:"slow",
     }
   }
 );
