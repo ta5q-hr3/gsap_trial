@@ -36,13 +36,15 @@
         GSAPはその指定に応じて近接度合い(gridトゥイーン開始位置=起点)を計算することができます。
         <br/>
         もしくは、grid:"auto" を使用することで、GSAPは要素の絶対座標位置を取得する 
-        <a href="https://developer.mozilla.org/ja/docs/Web/API/Element/getBoundingClientRect">element.getBoundingClientRect()</a>
+        <a href="https://developer.mozilla.org/ja/docs/Web/API/Element/getBoundingClientRect" target="_blank">element.getBoundingClientRect()</a>
         関数を使用して行と列を自動的に計算します。(要素の並び方が固定でないときがある場合=レスポンシブレイアウト に最適) <br/>
         もしも要素の列が整ったグリッドに配置されていない場合(ランダムであったり、不均一な配置の場合)には、
-        <a href="https://codepen.io/GreenSock/pen/gyWrPO?editors=0010">distributeByPosition()ヘルパー関数</a>
+        <a href="https://codepen.io/GreenSock/pen/gyWrPO?editors=0010" target="_blank">distributeByPosition()ヘルパー関数</a>
         が用意されているので、参考にしてみてください。
       </p>
-      <pre>grid:[9,15]</pre>
+      <pre>
+        Example...
+        grid:[9,15]</pre>
       <div class="element__parent grid">
         <div class="rect">grid : "auto"</div>
         <div class="rect">grid : "auto"</div>
@@ -110,6 +112,12 @@
         <br/>
         以下のデモは、上述(grid)のデモに axis:"x" を追加しています。
       </p>
+      <pre>
+        {
+          stagger: {
+            axis: "x",
+          }
+        }</pre>
       <div class="element__parent axis_x">
         <div class="rect">axis : "x"</div>
         <div class="rect">axis : "x"</div>
@@ -141,6 +149,12 @@
       <p>
         以下のデモは、上述(grid)のデモに axis:"y" を追加しています。
       </p>
+      <pre>
+        {
+          stagger: {
+            axis: "y",
+          }
+        }</pre>
       <div class="element__parent axis_y">
         <div class="rect">axis : "y"</div>
         <div class="rect">axis : "y"</div>
@@ -190,6 +204,12 @@
         デフォルトは"none"です。
       </p>
       <p>ease:"power2.out"</p>
+      <pre>
+        {
+          stagger: {
+            ease: "power2.out",
+          }
+        }</pre>
       <div class="element__parent easeOne">
         <div class="rect">grid ease: "power2.out"</div>
         <div class="rect">grid ease: "power2.out"</div>
@@ -201,6 +221,12 @@
         <div class="rect">grid ease: "power2.out"</div>
       </div>
       <p>ease:"slow"</p>
+      <pre>
+        {
+          stagger: {
+            ease: "slow",
+          }
+        }</pre>
       <div class="element__parent easeTwo">
         <div class="rect">grid ease: "slow"</div>
         <div class="rect">grid ease: "slow"</div>
@@ -236,7 +262,7 @@
         before repeating the WHOLE sequence, 
         <br>
 
-        staggerプロパティと同改装に repeat を指定した場合、<br/>
+        staggerプロパティと同階層に repeat を指定した場合、<br/>
         (例えば gsap.to(... {repeat:-1, stagger:{...}) といった感じ)
         全てのサブトゥイーンが終了するのを待って、全てのシーケンスを繰り返し(リピートし)ます。
         <br>
