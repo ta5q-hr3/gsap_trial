@@ -2,10 +2,26 @@
 
 @use "../css/common" as common;
 
+
+* {
+  color: #fff;
+}
+
+
 html,body {
   min-width: 100vw;
   min-height: 100vh;
+  background-color: #333;
 }
+
+h1,h2,h3,h4,p {
+  letter-spacing: 0.1em;
+  line-height: 1.4rem;
+}
+p {
+  font-weight: lighter;
+}
+
 
 h1 {
   font-size: 1.2rem;
@@ -48,17 +64,14 @@ main {
         font-weight:bold;
       }
       h4, section > h4 {
-        color: #444;
+        //color: #444;
         font-size: 0.9rem;
         font-weight:bold;
       }
       p {
         font-size: 0.9rem;
-        font-weight:400;
+        //font-weight:400;
         padding: 1rem 0;
-        strong {
-          color: #555;
-        }
       }
     }
   }
@@ -74,6 +87,19 @@ pre {
   padding:1rem;
 }
 
+svg {
+  //rect { stroke: #fff;}
+  path.line {
+    stroke: #fff;
+    stroke-width:1px;
+  }
+  path.object {
+    fill: #fff;
+  }
+  circle {
+    fill: #fff;
+  }
+}
 .element__parent {
   display:flex;
   justify-content: center;

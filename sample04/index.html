@@ -261,27 +261,38 @@
         it waits for all of the sub-tweens to finish 
         before repeating the WHOLE sequence, 
         <br>
-
-        staggerプロパティと同階層に repeat を指定した場合、<br/>
+        staggerプロパティと同階層に repeat を指定した場合、
         (例えば gsap.to(... {repeat:-1, stagger:{...}) といった感じ)
-        全てのサブトゥイーンが終了するのを待って、全てのシーケンスを繰り返し(リピートし)ます。
+        全てのサブトゥイーンが終了するのを待って、再びトゥイーンの(全ての)シーケンスを繰り返します(=repeat します)。
         <br>
-
-
+        <br>
         but if you prefer to have each sub-tween repeat independently 
-        (so that as soon as each one completes, 
-        it immediately repeats itself), 
+        (so that as soon as each one completes, it immediately repeats itself), 
+        <br>
+        シーケンス全体の終了とその繰り返しを待たずに、それぞれのサブトゥイーンをリピートさせたい場合
+        (それぞれの要素自身のトゥイーンを完了次第すぐに繰り返したい場合)、
+        <br>
+        <br>
         simply nest the repeat (and yoyo if necessary) inside 
         the advanced stagger object, 
         like gsap.to(... {stagger:{repeat:-1, ...}});
+        <br>
 
-        gsap.to(... {repeat:-1, stagger:{...})のようにtweenのvarsオブジェクトのトップレベルに
-        リピートを配置すると、
-        すべてのサブtweenが終了してからシーケンス全体を繰り返しますが、
-        それぞれのサブtweenを独立して繰り返したい場合（それぞれが完了するとすぐに繰り返すように）、
+        単純なネスト そのリピート (必要なら yoyo の設定も) 高度なstaggerオブジェクト の 内側に
+        
+        
         次のように高度なstaggerオブジェクト内にリピート（および必要に応じてyoyo）ネストするだけで、
         gsap.to(... {repeat:-1, stagger:})のように繰り返すオブジェクトは、
         すべてのtweenが完全に終わるまで待機します。 to(... {stagger:{repeat:-1, ...}}); 
+
+        <br>
+        <br>
+
+        The same thing is true for callbacks (e.g. onUpdate, onComplete, onStart)
+         - including them inside of the stagger objects makes them fire per element. 
+        Think of it almost like the advanced stagger object is a vars object for the sub-tweens.
+        <br>
+        <br>
         同じことがコールバック（onUpdate, onComplete, onStartなど）にも当てはまります 
         - staggerオブジェクトの内部に含めると、要素ごとに発火します。
         これは、高度なスタッガーオブジェクトがサブツイストのためのvarsオブジェクトであるのと
