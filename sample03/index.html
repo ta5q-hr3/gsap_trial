@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400;700&display=swap" rel="stylesheet"> 
-  <title>GSAP Trial__BASIC SAMPLE 03</title>
+  <title>GSAP Trial__ADVANCE SAMPLE 03 Stagger</title>
 </head>
 <body>
 <main>
@@ -20,13 +20,21 @@
 
   <section>
 
-    <h2>Stagger 1</h2>
+    <h2>Staggerの基本</h2>
     <p>
       "Stagger" 指定は連続した複数要素に指定した間隔(時間)で順番にアニメーション(トゥイーン)処理を実行します。<br/>
       staggerプロパティには数値、オブジェクト({}での指定)、関数(function)を指定することができます。<br/>
       例えば、 stagger: 0.1 を指定すると0.1 秒間隔で「渡したリスト(要素が取得された)順」にアニメーションを実行します。<br/>
 
     </p>
+    <pre>
+      gsap.from(
+        elementArray,
+        {
+          ...,
+          stagger: 0.1,
+        }
+      );</pre>
     <div class="element__parent stagger_one">
       <div class="rect">stagger 01</div>
       <div class="rect">stagger 02</div>
@@ -55,7 +63,7 @@
   </section>
 
   <section>
-    <h2>Staggerへのオブジェクト指定</h2>
+    <h2>Staggerに詳細な指定を行う オブジェクト指定 1</h2>
     <p>
       staggerパラメータへオブジェクトで指定を行うことで、アニメーションを細かく指定することができます。<br/>
       オブジェクト内には下記のプロパティを指定することができます。
@@ -74,10 +82,10 @@
         }
       );
     </pre>
+    <!--
+      amount
+      -->
     <section>
-      <!--
-        amount
-        -->
       <h3>amount</h3>
       <p>
         staggerする各アニメーション間隔の合計量指定プロパティです。秒単位で指定します。<br/>
@@ -97,17 +105,22 @@
         <div class="rect">amount : 2</div>
       </div>
     </section>
+    <!-- 
+    each
+    -->
     <section>
-      <!-- 
-        each
-        -->
       <h3>each</h3>
       <p>
-        staggerする各アニメーション間隔の直接指定プロパティです。秒単位で指定します。<br/>
-        指定値(秒数)の待機時間を対象要素のアニメーション開始タイミング前に追加します。つまり、個々のアニメーションの待機時間を指定します。<br/>
+        staggerする各アニメーション間隔時間の直接指定プロパティです。秒単位で指定します。<br/>
+        stagger: 0.1 指定と同等の指定ですが、オブジェクト指定内で行うことで他の拡張プロパティを利用できます。
+      </p>
+      <p>
+        staggerトゥイーンの対象となる要素集合の最初の1つ目のトゥイーンは通常通り実行され、
+        次の2つ目(とそれ以降)の要素がトゥイーンを開始するまでに指定した秒数の間隔が発生します。<br/>
+        平たくいうと、指定値(秒数)の待機時間を対象要素のトゥイーンアニメーション開始タイミング前に追加します。つまり、個々のアニメーションの待機時間を指定します。<br/>
         例えば、100個並んだ要素へのstaggerに each:1 を指定した場合、100回のアニメーションの前に1秒の待機がアニメーション開始前に追加されます。
-        (つまり、指定した待機時間x対象要素数分の追加時間が生まれます)<br/>
-        以下の例では stagger: {each:1} を指定しているため、各アニメーションのスタートに1秒の遅延が発生しています。
+        (したがって、指定した待機時間x対象要素数分の追加時間が生まれます)<br/>
+        以下の例では stagger: {each:1} を指定しているため、2つ目以降の各トゥイーンアニメーションのスタートに1秒の遅延が発生しています。
       </p>
       <div class="element__parent stagger_four">
         <div class="rect">each : 1</div>
@@ -175,7 +188,7 @@
         <!-- from:"center" -->
         <p>
           <strong>from:"center"</strong> を指定すると、対象とした配列の中央からアニメーションさせます。配列の長さが偶数の場合、中央となる要素が２つになります。<br/>
-          例えば、要素8つの配列の場合、中央のIndexが4,5の要素から同時にアニメーションを開始します。
+          例えば、要素8つの配列の場合、中央のIndexが3,4の要素から(Indexは0からなので)同時にアニメーションを開始します。
         </p>
         <div class="element__parent stagger_seven">
           <div class="rect">from : "center"</div>
@@ -322,6 +335,10 @@
 
 
 </article>
+
+<p>
+  <a href="../sample04/index.html">次へ</a>
+</p>
 
 
 </main>

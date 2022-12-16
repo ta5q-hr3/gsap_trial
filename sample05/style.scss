@@ -3,10 +3,11 @@
 @use "../css/common" as common;
 
 
+
+
 * {
   color: #fff;
 }
-
 
 html,body {
   min-width: 100vw;
@@ -22,12 +23,24 @@ p {
   font-weight: lighter;
 }
 
-
 h1 {
   font-size: 1.2rem;
   line-height: 4rem;
   text-align: center;
 
+}
+h2 {
+  font-size: 1.1rem;
+  font-weight:bold;
+}
+h3 {
+  font-size: 1rem;
+  font-weight:bold;
+}
+h4 {
+  font-size: 0.9rem;
+  //font-weight:bold;
+  padding:0.4rem;
 }
 
 main {
@@ -40,39 +53,16 @@ main {
 
   article {
     max-width:90%;
-    & > section {
-      margin-bottom: 8rem;
-
+    section {
       section {
         padding-left: 1rem;
         border-left: 1px solid #56799f;
+      }
 
-        section {
-          padding-left: 1.5rem;
-          border-left: 1px solid #ccc;
-
-          svg {
-            transform: scale(1.0);
-          }
-
-        }
-      }
-      h2 {
-        font-size: 1.1rem;
-        font-weight:bold;
-      }
-      h3, section > h3 {
-        font-size: 1rem;
-        font-weight:bold;
-      }
-      h4, section > h4 {
-        //color: #444;
-        font-size: 0.9rem;
-        font-weight:bold;
-      }
       p {
         font-size: 0.9rem;
         //font-weight:400;
+        font-weight: lighter;
         padding: 1rem 0;
       }
     }
@@ -89,21 +79,10 @@ pre {
   padding:1rem;
 }
 
-svg {
-  //rect { stroke: #fff;}
-  path.line {
-    stroke: #fff;
-    stroke-width:1px;
-  }
-  path.object {
-    fill: #fff;
-  }
-  circle {
-    fill: #fff;
-  }
-}
 .element__parent {
   display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   
@@ -113,19 +92,13 @@ svg {
   margin-bottom: 2rem;
   padding: 0.5rem;
 
-  &.stagger_eleven {
-    flex-wrap:wrap;
-    div {
-      width: 12% !important;
-    }
-  }
 
   // クラス名が前方一致
   div[class^="rect"] {
 /*    width: 100px;
     height: 100px;*/
     display: inline-block;
-    width: 88px;
+    width: 12%;
     height: 88px;
     background-color: #444;
     color:#fff;
@@ -136,6 +109,5 @@ svg {
     word-break: break-all;
 
   }
-
 
 }

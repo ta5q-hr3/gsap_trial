@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400;700&display=swap" rel="stylesheet"> 
-  <title>GSAP Trial__BASIC SAMPLE 04</title>
+  <title>GSAP Trial__ADVANCE SAMPLE 04 Stagger</title>
 </head>
 <body>
 <main>
@@ -19,7 +19,7 @@
 <article>
 
   <section>
-    <h2>Staggerへのオブジェクト指定 2</h2>
+    <h2>Staggerに詳細な指定を行う オブジェクト指定 2</h2>
     <p>
       staggerパラメータへオブジェクトで指定を行うことで、アニメーションを細かく指定することができます。<br/>
       オブジェクト内には下記のプロパティを指定することができます。
@@ -211,14 +211,14 @@
           }
         }</pre>
       <div class="element__parent easeOne">
-        <div class="rect">grid ease: "power2.out"</div>
-        <div class="rect">grid ease: "power2.out"</div>
-        <div class="rect">grid ease: "power2.out"</div>
-        <div class="rect">grid ease: "power2.out"</div>
-        <div class="rect">grid ease: "power2.out"</div>
-        <div class="rect">grid ease: "power2.out"</div>
-        <div class="rect">grid ease: "power2.out"</div>
-        <div class="rect">grid ease: "power2.out"</div>
+        <div class="rect">ease: "power2.out"</div>
+        <div class="rect">ease: "power2.out"</div>
+        <div class="rect">ease: "power2.out"</div>
+        <div class="rect">ease: "power2.out"</div>
+        <div class="rect">ease: "power2.out"</div>
+        <div class="rect">ease: "power2.out"</div>
+        <div class="rect">ease: "power2.out"</div>
+        <div class="rect">ease: "power2.out"</div>
       </div>
       <p>ease:"slow"</p>
       <pre>
@@ -228,14 +228,14 @@
           }
         }</pre>
       <div class="element__parent easeTwo">
-        <div class="rect">grid ease: "slow"</div>
-        <div class="rect">grid ease: "slow"</div>
-        <div class="rect">grid ease: "slow"</div>
-        <div class="rect">grid ease: "slow"</div>
-        <div class="rect">grid ease: "slow"</div>
-        <div class="rect">grid ease: "slow"</div>
-        <div class="rect">grid ease: "slow"</div>
-        <div class="rect">grid ease: "slow"</div>
+        <div class="rect">ease: "slow"</div>
+        <div class="rect">ease: "slow"</div>
+        <div class="rect">ease: "slow"</div>
+        <div class="rect">ease: "slow"</div>
+        <div class="rect">ease: "slow"</div>
+        <div class="rect">ease: "slow"</div>
+        <div class="rect">ease: "slow"</div>
+        <div class="rect">ease: "slow"</div>
       </div>
     </section>
 
@@ -245,62 +245,89 @@
     <section>
       <h3>repeat</h3>
       <p>
-        
-        Repeats immediately, 
-        not waiting for the other staggered animations to finish.
-        <br>
-        Staggerのオブジェクト指定にRepeatを使用すると、
-        他のStaggerアニメーションの終了を待つことなく直ぐにリピートします。
-
-        <br>
-        <br>
-
-        If you put your repeat in the top level of the vars object 
-        of your tween like gsap.to(... {repeat:-1, stagger:{...}), 
-
-        it waits for all of the sub-tweens to finish 
-        before repeating the WHOLE sequence, 
-        <br>
+        Staggerのオブジェクト指定内に repeat を使用すると、
+        トゥイーンを指定している要素配列全体のStaggerアニメーション終了を待つことなく、
+        個別の要素単位でトゥイーンを直ぐにリピートします。
+      </p>
+      <h4>シークエンス全体を繰り返す</h4>
+      <p>
+        普通に
         staggerプロパティと同階層に repeat を指定した場合、
         (例えば gsap.to(... {repeat:-1, stagger:{...}) といった感じ)
         全てのサブトゥイーンが終了するのを待って、再びトゥイーンの(全ての)シーケンスを繰り返します(=repeat します)。
-        <br>
-        <br>
-        but if you prefer to have each sub-tween repeat independently 
-        (so that as soon as each one completes, it immediately repeats itself), 
-        <br>
-        シーケンス全体の終了とその繰り返しを待たずに、それぞれのサブトゥイーンをリピートさせたい場合
-        (それぞれの要素自身のトゥイーンを完了次第すぐに繰り返したい場合)、
-        <br>
-        <br>
-        simply nest the repeat (and yoyo if necessary) inside 
-        the advanced stagger object, 
-        like gsap.to(... {stagger:{repeat:-1, ...}});
-        <br>
-
-        単純なネスト そのリピート (必要なら yoyo の設定も) 高度なstaggerオブジェクト の 内側に
-        
-        
-        次のように高度なstaggerオブジェクト内にリピート（および必要に応じてyoyo）ネストするだけで、
-        gsap.to(... {repeat:-1, stagger:})のように繰り返すオブジェクトは、
-        すべてのtweenが完全に終わるまで待機します。 to(... {stagger:{repeat:-1, ...}}); 
-
-        <br>
-        <br>
-
-        The same thing is true for callbacks (e.g. onUpdate, onComplete, onStart)
-         - including them inside of the stagger objects makes them fire per element. 
-        Think of it almost like the advanced stagger object is a vars object for the sub-tweens.
-        <br>
-        <br>
-        同じことがコールバック（onUpdate, onComplete, onStartなど）にも当てはまります 
-        - staggerオブジェクトの内部に含めると、要素ごとに発火します。
-        これは、高度なスタッガーオブジェクトがサブツイストのためのvarsオブジェクトであるのと
-        ほぼ同じと考えてください。
-
       </p>
-      <div class="element__parent gridRepeat">
-        <div class="rect">stagger{ repeat:8, }</div>
+      <h4>トゥイーンさせた要素自体のを繰り返し</h4>
+      <p>
+        シークエンス全体の終了とその繰り返しが発火するのを待たずに、
+        それぞれのサブトゥイーンをリピートさせたい場合
+        (それぞれの要素自身のトゥイーンが完了次第すぐに繰り返したい場合)は、
+        repeat:true, repeat:-1 を
+        staggerオブジェクト設定の内側に(トップレベルのrepeatが既にあっても、ネストして)設定するだけです。
+        (yoyoの設定も同じく指定できます)
+      </p>
+      <p>
+        スタッガーのオブジェクト指定内に設置することは、個々の要素に対して発火させることになります。
+        <br/>
+        同じことがコールバック関数にも当てはまります。（トゥイーンのタイミングに合わせて処理を行う onUpdate, onComplete, onStartなど）
+        <br/>
+        スタッガーのオブジェクト指定は、個々の要素のサブトゥイーンに対して指定しているのとほぼ同じと考えると良いでしょう。
+      </p>
+      <pre>
+        // 普通に repeat
+        gsap.to(
+          hoge,
+          {
+            ...,
+            repeat:-1,
+            stagger:{
+            }
+          }
+        );
+
+        // ネストさせて 間をおかずに repeat
+        gsap.to(
+          hoge,
+          {
+            ...,
+            stagger:{
+              repeat:-1,
+            }
+          }
+        );</pre>
+      <!--
+        put "repeat" in top level
+      -->
+      <h4 style="margin-top:2rem">トップレベルにrepeatを配置した場合</h4>
+      <p>全てのトゥイーンが終了後に、リピートする。</p>
+      <pre>
+        repeat: 8,
+        stagger: {
+          ...
+        }</pre>
+      <div class="element__parent topLevelRepeat">
+        <div class="rect">repeat:true, stagger{ }</div>
+        <div class="rect">repeat:true, stagger{ }</div>
+        <div class="rect">repeat:true, stagger{ }</div>
+        <div class="rect">repeat:true, stagger{ }</div>
+        <div class="rect">repeat:true, stagger{ }</div>
+        <div class="rect">repeat:true, stagger{ }</div>
+        <div class="rect">repeat:true, stagger{ }</div>
+        <div class="rect">repeat:true, stagger{ }</div>
+      </div>
+
+      <!--
+        put "repeat" inner object set
+      -->
+      <h4>staggerのオブジェクト指定に repeat を設定した場合</h4>
+      <p>全てのトゥイーンが終了する前にリピートを始める。</p>
+      <pre>
+        repeat: 8,
+        stagger: {
+          ...
+          repeat: -1,
+        }</pre>
+      <div class="element__parent objectRepeat">
+        <div class="rect">stagger{ repeat:8, yoyo:true }</div>
         <div class="rect">stagger{ repeat:8, }</div>
         <div class="rect">stagger{ repeat:8, }</div>
         <div class="rect">stagger{ repeat:8, }</div>
@@ -310,12 +337,41 @@
         <div class="rect">stagger{ repeat:8, }</div>
       </div>
 
-    </section>
+      <!--
+        set with "yoyo"
+      -->
+      <h4>staggerのオブジェクト指定に repeat と yoyo を同時に設定した場合</h4>
+      <p>全てのトゥイーンが終了する間に各要素に yoyo が適用される。<br/>
+      そして全てのトゥイーンが終了する前にリピートを始める。</p>
+      <pre>
+        repeat: 8,
+        stagger: {
+          ...
+          repeat: -1,
+          yoyo:true,
+        }</pre>
+      <div class="element__parent objectRepeatYoyo">
+        <div class="rect">stagger: function</div>
+        <div class="rect">stagger{ repeat:-1, yoyo:true }</div>
+        <div class="rect">stagger{ repeat:-1, yoyo:true }</div>
+        <div class="rect">stagger{ repeat:-1, yoyo:true }</div>
+        <div class="rect">stagger{ repeat:-1, yoyo:true }</div>
+        <div class="rect">stagger{ repeat:-1, yoyo:true }</div>
+        <div class="rect">stagger{ repeat:-1, yoyo:true }</div>
+        <div class="rect">stagger{ repeat:-1, yoyo:true }</div>
+      </div>
 
+    </section>
 
   </section>
 
+
 </article>
+
+
+<p>
+  <a href="../sample05/index.html">次へ</a>
+</p>
 
 
 </main>

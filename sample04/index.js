@@ -134,3 +134,89 @@ gsap.from(
     }
   }
 );
+
+
+/*
+Standard Stagger 16
+propaties : topLevelRepeat
+*/
+const elmtopLevelRepeat = document.querySelectorAll(".element__parent.topLevelRepeat .rect");
+
+gsap.from(
+  elmtopLevelRepeat,
+  {
+    opacity:0,
+    //y:-20,
+    scale:0.1,
+    ease:"power4.out",
+    duration:2,
+    repeat:8,
+    //repeatDelay:1,
+    stagger: {
+      //amount:0.2,
+      each:0.2,
+      from:"center",
+      grid:"auto",
+    }
+  }
+);
+
+
+/*
+Standard Stagger 17
+propaties : repeat
+*/
+const elmobjectRepeat = document.querySelectorAll(".element__parent.objectRepeat .rect");
+
+gsap.from(
+  elmobjectRepeat,
+  {
+    opacity:0,
+    //y:-20,
+    scale:0.1,
+    ease:"power4.out",
+    duration:2,
+    repeat:8,
+    //repeatDelay:1,
+    stagger: {
+      //amount:0.2,
+      each:0.2,
+      from:"center",
+      grid:"auto",
+
+      repeat:-1,
+    }
+  }
+);
+
+
+/*
+Standard Stagger 18
+propaties : repeat yoyo
+*/
+const elmobjectRepeatYoyo = document.querySelectorAll(".element__parent.objectRepeatYoyo .rect");
+
+gsap.from(
+  elmobjectRepeatYoyo,
+  {
+    opacity:0,
+    //y:-20,
+    scale:0.1,
+    ease:"power4.out",
+    duration:2,
+    repeat:8,
+    //repeatDelay:1,
+    stagger: {
+      //amount:0.2,
+      each:0.2,
+      from:"center",
+      grid:"auto",
+
+      repeat:-1,
+      yoyo:true,
+    }
+  }
+);
+
+
+

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Google Fonts loading -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400;700&display=swap" rel="stylesheet"> 
+<title>GSAP Trial__ADVANCE SAMPLE 05 Stagger</title>
+
+</head>
+<body>
+<main>
+
+<a href="/">戻る</a>
+
+<h1>GSAPのスタンダードな機能を用いた簡単なアニメーション 応用編4</h1>
+
+<article>
+
+  <!-- 
+    function
+  -->
+  <section>
+    <h2>Staggerに詳細な指定を行う function</h2>
+    <p>
+      Only use this if you need to run custom logic for distributing the staggers. 
+      <br>
+      これは、スタッガーを分散させるためのカスタムロジックを実行する必要がある場合にのみ使用します。
+      <br>
+      スタッガーへの関数指定は、
+      各トゥイーンへ分散した
+      カスタムロジックを実行する必要がある
+      場合にのみ使用します。
+      <br>
+      <br>
+      The function gets called once for each target/element in the Array 
+      and should return the total delay 
+      from the starting position 
+      (not the amount of delay from the previous tween's start time). 
+      <br>
+      この関数は、配列の各ターゲット/要素に対して1回ずつ呼び出され、
+      開始位置からの遅延の合計を返します（前のトゥイーンの開始時間からの遅延量ではありません）。
+      <br>
+      関数指定は、配列内の各ターゲット/要素毎に1回ずつ呼び出され、
+      開始位置からの遅延時間の合計を返します。
+      ( 前回のトゥイーンが開始された時点からの遅延の合計ではないことに注意 )
+      <br>
+      <br>
+      
+      The function receives the following parameters:
+
+      index [Integer] - The index value from the list.
+      target [Object] - The target in the list at that index value.
+      list [Array | NodeList] - The targets array (or NodeList).
+      <br>
+      この関数は、以下のパラメータ(引数)を受け取ります。
+      <br>
+          index [Integer] - リストからのインデックス値です。
+          <br>
+          target [オブジェクト] - リスト内のインデックス値にあるターゲット。
+          <br>
+          list [Array | NodeList] - ターゲット配列（またはNodeList）。
+
+    </p>
+    <pre>
+      gsap.to(
+        targetArray,
+        {
+          ...,
+          /*
+          @index ... index of target element which in list
+          @target ... target element in list
+          @list ... element list which is set stagger
+          */
+          stagger: function ( index, target, list ){
+            const val = index * 10;
+            const styleVal = "-" + val + "px";
+            target.innerText = styleVal;
+            target.style.marginTop = styleVal;
+      
+          }
+        }
+      );
+    </pre>
+    <div class="element__parent objectFunction">
+      <div class="rect">stagger: function(){}</div>
+      <div class="rect">stagger: function(){}</div>
+      <div class="rect">stagger: function(){}</div>
+      <div class="rect">stagger: function(){}</div>
+      <div class="rect">stagger: function(){}</div>
+      <div class="rect">stagger: function(){}</div>
+      <div class="rect">stagger: function(){}</div>
+      <div class="rect">stagger: function(){}</div>
+    </div>
+  </section>
+
+
+</article>
+
+
+
+</main>
+
+<script type="module" src="index.js"></script>
+
+</body>
+</html>
