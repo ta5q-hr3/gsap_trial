@@ -107,6 +107,7 @@
     全ての競合するトゥイーンはkill(停止)されます。
   </p>
 
+  <h3>overwrite : "auto" の場合</h3>
   <p>
     autoの場合、トゥイーンがはじめてレンダリングする際に、
     アクティブなモーション（同じターゲットの同じプロパティ）の競合を突き止め、
@@ -121,18 +122,20 @@
 
   <div class="example type01">
 
+    <h3>example 01</h3>
+
     <div class="button_sample">
-      <h3>Over write : false</h3>
+      <h4>Over write : false</h4>
       <button class="false">Hover & Tween</button>
     </div>
 
     <div class="button_sample">
-      <h3>Over write : true</h3>
+      <h4>Over write : true</h4>
       <button class="true">Hover & Tween</button>
     </div>
 
     <div class="button_sample">
-      <h3>Over write : auto</h3>
+      <h4>Over write : auto</h4>
       <button class="auto">Hover & Tween</button>
     </div>
 
@@ -151,25 +154,59 @@
 
   <div class="example type02">
 
+      <h3>example 02</h3>
+
+    <div class="description">
+      <h4>overwrite : false</h4>
+      <p>
+        「inject tween」ボタンで与えられるトゥイーンには
+        overwrite: false が付与されています。
+        「start」ボタン押下で始まるトゥイーンに"inject"トゥイーンが
+        <strong>割り込んだ</strong>後に、「start」トゥイーン
+      </p>
+    </div>
     <div class="pattern one">
       <div class="slide-area">
         <div class="slide-item"></div>
       </div>
       <div class="slide-switch">
-        <button>start</button>
-        <button>inject tween</button>
+        <button class="start">start</button>
+        <button class="inject">inject tween</button>
       </div>
     </div>
 
+
+    <div class="description">
+      <h4>overwrite : true</h4>
+      <p>
+        「inject tween」ボタンで与えられるトゥイーンには
+        overwrite: true が付与されています。
+      </p>
+    </div>
     <div class="pattern two">
       <div class="slide-area">
         <div class="slide-item"></div>
       </div>
+      <div class="slide-switch">
+        <button class="start">start</button>
+        <button class="inject">inject tween</button>
+      </div>
     </div>
 
+    <div class="description">
+      <h4>overwrite : "auto"</h4>
+      <p>
+        「inject tween」ボタンで与えられるトゥイーンには
+        overwrite: "auto" が付与されています。
+      </p>
+    </div>
     <div class="pattern three">
       <div class="slide-area">
         <div class="slide-item"></div>
+      </div>
+      <div class="slide-switch">
+        <button class="start">start</button>
+        <button class="inject">inject tween</button>
       </div>
     </div>
 

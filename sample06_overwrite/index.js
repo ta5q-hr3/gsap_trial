@@ -119,5 +119,52 @@ type01__buttons.forEach(
 
 // example type02
 
+// get example parent Block
 const type02__column = document.querySelector(".example.type02");
-const type02__patterns = type02__column.querySelectorAll(".pattern");
+
+/*
+  @exampleNumber : "one","two","three"
+  @iverwriteValue: false, true, "auto"
+ */
+const setType02Events = ( exampleNumber, overwriteValue ) => {
+  const parentColumnClassName = ".pattern." + exampleNumber;
+
+  // get element has class="pattern xxx" 
+  const type_column = type02__column.querySelector( parentColumnClassName );
+  const slide_element = type_column.querySelector( ".slide-item" );
+  // set event to "start" button
+  type_column.querySelector(".start").addEventListener(
+    'click',
+    () => {
+      gsap.to(
+        slide_element,
+        {
+          x: type_column.clientWidth,
+          rotate: 720,
+          duration: 15
+        }
+      );
+    }
+  );
+  // set event to "inject" button
+  type_column.querySelector(".inject").addEventListener(
+    'click',
+    () => {
+      gsap.to(
+        slide_element,
+        {
+          x:0,
+          duration: 2,
+          overwrite: overwriteValue
+        }
+      );
+    }
+  );
+
+}// setType02Events
+
+setType02Events( "one", false);
+setType02Events( "two", true );
+setType02Events( "three", "auto");
+
+

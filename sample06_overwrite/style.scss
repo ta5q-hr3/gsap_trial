@@ -44,7 +44,10 @@ button.sample:hover {
 
 .example{
 
-  // button sample
+  border: 1px solid #444;
+  padding: 1rem;
+
+        // button sample
   &.type01 {
     display: flex;
     flex-direction: row;
@@ -53,7 +56,7 @@ button.sample:hover {
     .button_sample {
       padding: 1rem;
   
-      h3 {
+      h4 {
         line-height:2rem;
         margin-bottom:1rem;
       }
@@ -72,8 +75,10 @@ button.sample:hover {
     flex-direction: column;
     align-items: center;
     gap: 2rem 0;
-    border: 1px solid #444;
-    padding: 1rem;
+
+    .description {
+      width: 90%;
+    }
 
     .pattern {
       min-width:90%;
@@ -89,6 +94,7 @@ button.sample:hover {
         width: 100%;
         min-height: 3rem;
         background-color: #ccc;
+        margin-bottom:1rem;
 
         .slide-item {
           position: absolute;
@@ -107,8 +113,23 @@ button.sample:hover {
         button {
           width:auto;
           height: 2rem;
-          line-height: 2rem;
-
+          line-height: 1.2rem;
+          padding: 0 1rem;
+          transition-property: all;
+          transition-duration: 300ms;
+          transition-timing-function: linear;
+          
+          &:nth-child(1){
+            margin-right:1rem;
+          }
+          &:hover {
+            background-color: #fff;
+            color:#444;
+          }
+          &:active {
+            background-color: transparent;
+            color: #fff;
+          }
         }
       }
 
