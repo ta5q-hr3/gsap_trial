@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Google Fonts loading -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400;700&display=swap" rel="stylesheet"> 
+  
+<title>GSAP Trial SAMPLE 06 - overwrite - </title>
+</head>
+
+<body>
+
+<main>
+
+<section>
+
+  <a href="/">戻る</a>
+
+  <h1>GSAPのスタンダードな機能 豆知識編 - overwrite -</h1>
+  
+</section>
+
+<article>
+
+  <h2>Overwrite - 連続してトゥイーンさせる場合の注意点 -</h2>
+  <p>
+    GSAPにはトゥイーンの衝突(コンフリクト)に対処する"overwrite"プロパティが用意されています。
+  </p>
+
+  <!-- code sample -->
+  <pre>gsap.to(element, {
+    ...
+    overwrite: true, // オーバーライトの指定
+  });</pre>
+
+  <p>
+    対象要素がすでにトゥイーンしていた場合に、
+    同じ要素に別の(新しい)トゥイーンを発生させると、
+    後者のトゥイーンが優先して実行されます。
+    このとき、先に実行されていたトゥイーンに<strong>割り込む</strong>形で
+    後者のトゥイーンは実行されているため、
+
+    <br/>
+    割り込んだトゥイーンは
+    前者のトゥイーンで変化していたプロパティ
+    
+    もしも、
+
+    <br/>
+
+    
+    後者のトゥイーンの終了後、前者のトゥイーンの"残り"が実行されます。<br/>
+    この<strong>"残り(となった場合)"を実行するかどうか</strong>を"overwrite"プロパティで指定することができます。
+    <br/>
+    トゥイーンがある程度進んでいれば、割り込まれた前者のトゥイーンはキャンセルされますが、
+    トゥイーンのトリガーが短い時間に連続して発火した場合、トゥイーンの"残り"は順に実行されてしまいます。
+  </p>
+  <p>
+    以下のボタンの例では、マウスカーソルが乗ったとき(mouseenter)、
+    離れたとき(mouseleave)の２つのトゥイーンを実行します。
+    <br/>
+    マウスカーソルがボタン要素に乗ってすぐに離れた場合、カーソルホバーのトゥイーンが終了する前に
+    後者の"離れたとき(mouseleave)"のトゥイーンが実行されます。
+    <br/>
+    (例えば、ボタンの上をカーソルが通り過ぎた場合)
+    <br/>
+    このとき、"overwrite"プロパティの設定値によって振る舞いが異なります。
+  </p>
+
+  <h3>overwrite : false の場合</h3>
+  <p>
+    トゥイーンの上書きは行われません。割り込まれたトゥイーンを優先度順に実行します。<br/>
+    そのため、以下のボタンの例ではボタンが元に戻るトゥイーンが実行された後、
+    ボタン幅が拡張された「カーソルホバー時のトゥイーンの結果」が残ります。
+
+    <br>
+
+    No overwriting occurs and multiple tweens can try to animate 
+    the same properties of the same target at the same time. 
+
+    上書きが発生しません。
+    そのため、複数のトゥイーンは同時に同じ要素のプロパティを
+    アニメーションさせようとすることができます。
+
+
+    One way to think of it is that the tweens remain 
+    "fighting each other" until one ends.
+
+
+    どちらかのトゥイーンが終了するまで競合は続きます。
+
+    falseはデフォルトの値です。
+  </p>
+
+  <h3>overwrite : true の場合</h3>
+  <p>
+
+    同じターゲットのすべてのトゥイーンが、
+    どのプロパティに影響を与えるかに関係なく、即座に停止します。 
+    <br>
+    "前者" のトゥイーンで変化中のプロパティは overwriteされた時点で 変化を停止します。
+    <br>
+    全ての競合するトゥイーンはkill(停止)されます。
+  </p>
+
+  <p>
+    autoの場合、トゥイーンがはじめてレンダリングする際に、
+    アクティブなモーション（同じターゲットの同じプロパティ）の競合を突き止め、
+    他のトゥイーンの競合部分のみを停止します。重複していない部分はそのまま残ります。
+    <br>
+    前者のトゥイーンと後者のトゥイーンの間で
+    重複するプロパティのみを書き換え(overwrite)、
+    重複しないプロパティはそのままトゥイーンを継続します。
+  </p>
+
+
+
+  <div class="example type01">
+
+    <div class="button_sample">
+      <h3>Over write : false</h3>
+      <button class="false">Hover & Tween</button>
+    </div>
+
+    <div class="button_sample">
+      <h3>Over write : true</h3>
+      <button class="true">Hover & Tween</button>
+    </div>
+
+    <div class="button_sample">
+      <h3>Over write : auto</h3>
+      <button class="auto">Hover & Tween</button>
+    </div>
+
+  </div>
+
+  <p>
+    トゥイーンを連続して発生させるような場合(例えばボタン)には、
+    続け様に
+    例えば、カーソルがある要素と重なった時に発火するトゥイーンと
+    カーソルが要素から離れた時に発火するトゥイーンの2つが
+    同じ要素に
+    与えられていた場合、
+    注意して設定しましょう。
+  </p>
+
+
+  <div class="example type02">
+
+    <div class="pattern one">
+      <div class="slide-area">
+        <div class="slide-item"></div>
+      </div>
+      <div class="slide-switch">
+        <button>start</button>
+        <button>inject tween</button>
+      </div>
+    </div>
+
+    <div class="pattern two">
+      <div class="slide-area">
+        <div class="slide-item"></div>
+      </div>
+    </div>
+
+    <div class="pattern three">
+      <div class="slide-area">
+        <div class="slide-item"></div>
+      </div>
+    </div>
+
+  </div><!-- example type-02 -->
+
+</article>
+
+
+</main>
+
+
+<script type="module" src="index.js"></script>
+</body>
+</html>
