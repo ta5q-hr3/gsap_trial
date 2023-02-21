@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400;700&display=swap" rel="stylesheet"> 
-  
+
 <title>GSAP Trial SAMPLE 06 - overwrite - </title>
 </head>
 
@@ -25,6 +25,8 @@
 </section>
 
 <article>
+
+  <section id="explain">
 
   <h2>Overwrite - 連続してトゥイーンさせる場合の注意点 -</h2>
   <p>
@@ -43,11 +45,12 @@
     後者のトゥイーンが優先して実行されます。
     このとき、先に実行されていたトゥイーンに<strong>割り込む</strong>形で
     後者のトゥイーンは実行されているため、
-
+    割り込んだトゥイーンの終了後、先に実行していたトゥイーンが割り込まれた直後から再開されます。
     <br/>
     割り込んだトゥイーンは
     前者のトゥイーンで変化していたプロパティ
-    
+    <br>
+
     もしも、
 
     <br/>
@@ -118,7 +121,9 @@
     重複しないプロパティはそのままトゥイーンを継続します。
   </p>
 
+  </section>
 
+  <section id="examples">
 
   <div class="example type01">
 
@@ -154,15 +159,25 @@
 
   <div class="example type02">
 
-      <h3>example 02</h3>
+    <h3>example 02</h3>
 
     <div class="description">
       <h4>overwrite : false</h4>
       <p>
-        「inject tween」ボタンで与えられるトゥイーンには
-        overwrite: false が付与されています。
-        「start」ボタン押下で始まるトゥイーンに"inject"トゥイーンが
-        <strong>割り込んだ</strong>後に、「start」トゥイーン
+        「inject tween」ボタンで与えられるトゥイーンにはoverwrite: false が付与されています。
+        「start」ボタン押下でトゥイーンが始まったあとに、"inject tween"ボタンを押下すると、
+        途中から別の(逆方向に向かう)トゥイーンが始まります。<br/>
+        "inject tween"ボタンのトゥイーンが完了した後、「start」ボタンのトゥイーンが再開されます。<br/>
+        (ただし「start」ボタンのトゥイーンは停止しておらず、割り込んだトゥイーンが実行されている間も継続しています)<br/>
+        これは、割り込んだトゥイーンと先に始まっていたトゥイーンとが別々に実行されているためです。
+        <br/>
+        <strong>= overwrite していない(されていない)</strong>
+        <br/>
+        割り込むトゥイーンが overwrite : false の場合には、
+        それぞれのトゥイーンに指定されたプロパティを完了するまで実行されます。
+      </p>
+      <p>
+        ちなみに、overwrite : false はデフォルトの設定です。
       </p>
     </div>
     <div class="pattern one">
@@ -211,6 +226,73 @@
     </div>
 
   </div><!-- example type-02 -->
+
+
+  <div class="example type03">
+
+    <h3>example 03</h3>
+
+    <div class="description">
+      <p>
+        例えばこんな時に使用します<br/>
+        以下のメニューの例では、メニュー項目にカーソルが乗る(マウスオンする)と下線が現れ、
+        ポイントしているメニュー項目まで下線が移動します。<br/>
+        カーソルがメニュー項目から離れる(マウスアウトする)と下線が消えます。
+      </p>
+      <p>
+        overwrite : true では、
+      </p>
+    </div>
+
+    <div class="list_sample false">
+      <h4>overwrite : false</h4>
+      <p>
+        overwrite : false では、素早く連続してトゥイーンを発火させると、
+        マウスアウト時のボーダーが消えるトゥイーンが実行されません。
+        これは、割り込んだマウスオンのトゥイーンが完了した状態が保持され、
+        マウスアウト時のトゥイーンのプロパティにoverwriteされないためです。
+      </p>
+      <ul class="false">
+        <li>HOME</li>
+        <li>ABOUT</li>
+        <li>WORKS</li>
+        <li>CONTACT</li>
+      </ul>
+      <div class="flowBorder_wrapper">
+        <div class="flowBorder"></div>
+      </div>
+    </div>
+
+    <div class="list_sample true">
+      <h4>overwrite : true</h4>
+      <ul class="true">
+        <li>HOME</li>
+        <li>ABOUT</li>
+        <li>WORKS</li>
+        <li>CONTACT</li>
+      </ul>
+      <div class="flowBorder_wrapper">
+        <div class="flowBorder"></div>
+      </div>
+    </div>
+
+    <div class="list_sample auto">
+      <h4>overwrite : "auto"</h4>
+      <ul class="auto">
+        <li>HOME</li>
+        <li>ABOUT</li>
+        <li>WORKS</li>
+        <li>CONTACT</li>
+      </ul>
+      <div class="flowBorder_wrapper">
+        <div class="flowBorder"></div>
+      </div>
+    </div>
+
+  </div><!-- example type03 -->
+
+  </section><!-- examples -->
+
 
 </article>
 

@@ -2,46 +2,10 @@ import "./style.scss";
 import {gsap} from "gsap";
 
 
-/*
-const btn = document.querySelector("button.sample1");
 
-// .sample1
-
-btn.addEventListener(
-  'mouseenter', 
-  ()=> {
-  gsap.to(
-    btn,
-    {
-      scaleX: 1.3,
-      duration: 0.8,
-      backgroundColor: "#fff",
-      borderColor: "#333",
-      color: "#333",
-      overwrite: true
-    }
-  );
-});
-
-btn.addEventListener(
-  'mouseleave',
-  () => {
-    gsap.to(
-      btn,
-      {
-        scale: 1,
-        duration: 0.6,
-        backgroundColor:"#333",
-        borderColor:"#fff",
-        color:"#fff",
-        overwrite: true
-      }
-    );
-  }
-);
-*/
 
 /*
+
 // トゥイーンの定型指定
 // トゥイーン ... 共通する内容
 let enterTween = {
@@ -117,6 +81,11 @@ type01__buttons.forEach(
 );
 
 
+// -------------------------------
+// -------------------------------
+// -------------------------------
+
+
 // example type02
 
 // get example parent Block
@@ -141,7 +110,17 @@ const setType02Events = ( exampleNumber, overwriteValue ) => {
         {
           x: type_column.clientWidth,
           rotate: 720,
-          duration: 15
+          duration: 15,
+          onComplete: () => {
+            gsap.set(
+              slide_element,
+              {
+                x:0,
+                rotate: 0
+              }
+            );
+            //slide_element.style.transform = "translate3d(0px,0px,0px)";
+          }
         }
       );
     }
@@ -163,8 +142,184 @@ const setType02Events = ( exampleNumber, overwriteValue ) => {
 
 }// setType02Events
 
+// set Event to each buttons
 setType02Events( "one", false);
 setType02Events( "two", true );
 setType02Events( "three", "auto");
+
+
+
+// -------------------------------
+// -------------------------------
+// -------------------------------
+
+
+// example type03
+
+// Event setting method
+// @type03listElement ... HTML <li> tags of list example
+// @flowBorderElement ... Element of <div class="flowBorder"></div> include by .flowBorder_wrapper
+// @overwriteValue ... the value to set gsap's overwrite propaty
+const type03EventSetter = ( type03listElement, flowBorderElement, overwriteValue ) => {
+  type03listElement.forEach(
+    (element) => {
+      // set mouse over tween by gsap
+      element.addEventListener(
+
+        'mouseenter',
+        () => {
+          // 1. get target elment's width.
+          const elementWidth = element.clientWidth;
+          // 2. get target element's offset Left (horizontal distance from parent node's left side)
+          const leftPosition = element.offsetLeft;
+          //
+          // 3. moving flowBorder tween by gsap
+          //
+          gsap.to(
+            flowBorderElement,
+            {
+              duration: 0.5,
+              autoAlpha: 1,
+              width: elementWidth,
+              left: leftPosition,
+              ease: "elastic.out(1, 0.6)",
+              //overwrite: false
+              //overwrite: true
+              //overwrite: "auto"
+              overwrite: overwriteValue
+            }
+          );
+        }
+
+      );
+      element.addEventListener(
+
+        'mouseleave',
+        () => {
+          gsap.to(
+            flowBorderElement,
+            {
+              delay: 0.1,
+              duration: 0.1,
+              autoAlpha: 0,
+              overwrite: overwriteValue
+            }
+          );
+        }
+
+      );
+
+    }
+  );
+}
+
+// set Events to each list block
+// @exampleWrapper ... element of <div class="list_sample"> that wrapping the list of example elements
+const setType03Event = ( exampleWrapper ) => {
+
+  const menuListElements = exampleWrapper.querySelectorAll("li");
+  const flowBorderElement = exampleWrapper.querySelector(".flowBorder");
+
+  if ( exampleWrapper.classList.contains("true") ) {
+    type03EventSetter( menuListElements, flowBorderElement, true );
+  }
+  else if ( exampleWrapper.classList.contains("false") ) {
+    type03EventSetter( menuListElements, flowBorderElement, false );
+  }
+  else if ( exampleWrapper.classList.contains("auto") ) {
+    type03EventSetter( menuListElements, flowBorderElement, "auto" );
+  }
+
+}
+
+
+// get example parent Block
+const type03__column = document.querySelector(".example.type03");
+
+// get wrapper elements that contain example
+const type03__sampleWrapper = type03__column.querySelectorAll(".list_sample");
+
+type03__sampleWrapper.forEach(
+  ( wrapper ) => {
+    setType03Event( wrapper );
+  }
+);
+
+
+/*
+const targetListElement = type03__column.querySelector("ul");
+// #flowBorder is div#flowBorder
+const flowBorder = document.querySelector("#flowBorder");
+
+targetListElement.querySelectorAll("li").forEach(
+  
+  (element) => {
+    
+    element.addEventListener(
+      'mouseenter',
+      () => {
+
+        // tmp
+        //console.log("RUN");
+        // element.classList.add("on");
+
+
+        // 1. get target elment's width.
+        const elementWidth = element.clientWidth;
+        // 2. get target element's offset Left (horizontal distance from parent node's left side)
+        const leftPosition = element.offsetLeft;
+
+        //
+        // 3. moving flowBorder tween by gsap
+        //
+        gsap.to(
+          flowBorder,
+          {
+            duration: 0.5,
+            autoAlpha: 1,
+            width: elementWidth,
+            left: leftPosition,
+            //ease: "power4.inOut",
+            ease: "elastic.out(1, 0.6)",
+            //ease: "bounce.inOut",
+            
+            //overwrite: false
+            //overwrite: true
+            //overwrite: "auto"
+
+          }
+        );
+
+        // . show moving border
+
+        // . 
+
+
+      }
+    );
+
+    element.addEventListener(
+      'mouseleave',
+      () => {
+
+        gsap.to(
+          flowBorder,
+          {
+            delay: 0.1,
+            duration: 0.1,
+            autoAlpha: 0,
+
+            //overwrite: false
+            overwrite: true
+            //overwrite: "auto"
+          }
+        );
+      }
+    );
+
+  }
+
+);
+*/
 
 
