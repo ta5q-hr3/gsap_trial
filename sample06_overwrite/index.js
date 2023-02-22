@@ -1,9 +1,6 @@
 import "./style.scss";
 import {gsap} from "gsap";
 
-
-
-
 /*
 
 // トゥイーンの定型指定
