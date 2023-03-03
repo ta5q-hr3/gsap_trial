@@ -54,10 +54,10 @@
     </p>
     <p>
       上記が基本的な動作です。
-      割り込んだトゥイーンは先行していたトゥイーンの競合するプロパティ変更を見掛け上中断してしまいます。<br/>
+      割り込んだトゥイーンは先行していたトゥイーンの競合するプロパティ変更を
+      <span class="markline">見掛け上中断</span>してしまいます。<br/>
       そのため、デフォルト(overwrite:false)では割り込んだのトゥイーンの終了後、
-      前者のトゥイーンの "残り = 継続していた場合の前者トゥイーンのプロパティの変更" が実行されます。<br/>
-
+      前者のトゥイーンの "残り = 前者トゥイーンが継続していた場合のプロパティの変更" が実行されます。<br/>
       overwriteプロパティは
       <span class="markline">
       割り込んだトゥイーンが変更したプロパティを、
@@ -76,20 +76,31 @@
       以下のボタンの例 example01 では、マウスカーソルが乗ったとき(mouseenter)、
       離れたとき(mouseleave)の２つのトゥイーンを実行します。
       <br/>
-      マウスカーソルがボタン要素に乗ってすぐに離れた場合、カーソルホバー = 前者のトゥイーンが終了する前に
-      後者の"離れたとき(mouseleave)"のトゥイーンが実行されます。
-      <br/>
-      (例えば、ボタンの上をカーソルが通り過ぎた場合)
+      マウスカーソルがボタン要素に乗ってすぐに離れた場合(例えば、ボタンの上をカーソルが通り過ぎた場合)、
+      2つのトゥイーンが競合することになります。<br/>
+      (mouseenter のトゥイーンが終了する前に mouseleave のトゥイーンが実行されます)
       <br/>
       このとき、"overwrite"プロパティの設定値によってボタンの振る舞いに違いが出ます。
     </p>
 
     <h3>overwrite : false の場合</h3>
     <p>
-      トゥイーンの上書きは行われません。割り込まれたトゥイーンを優先度順に実行します。<br/>
+      トゥイーンの上書きは行われません。<br/>
+      割り込んだトゥイーンを優先度順に実行します。<br/>
+
       そのため、以下のボタンの例ではボタンが元に戻るトゥイーンが実行された後、
       ボタン幅が拡張された「カーソルホバー時のトゥイーンの結果」が残ります。
+      <br>
+      以下のボタンの例でトゥイーンの発火を短い間に繰り返した後にカーソルを離すと、
+      「カーソルホバー時のトゥイーンの結果」が残ります。<br/>
 
+      これは、割り込まれた "カーソルホバー時のトゥイーン" が最終的にプロパティを変化させたためです。
+      このように、overwrite : false (デフォルト) では、
+      <strong>
+      競合するトゥイーンの
+      </strong>
+      <br>
+      逆に言うと、競合しない別のプロパティであればトゥイーンさせ続けることができます。
       <br>
 
       No overwriting occurs and multiple tweens can try to animate 
@@ -119,6 +130,11 @@
       <br>
       全ての競合するトゥイーンはkill(停止)されます。
     </p>
+    <p>
+      Any existing tweens that are animating the same target 
+      (regardless of which properties are being animated) 
+      will be killed immediately. 
+    </p>
 
     <h3>overwrite : "auto" の場合</h3>
     <p>
@@ -129,6 +145,13 @@
       前者のトゥイーンと後者のトゥイーンの間で
       重複するプロパティのみを書き換え(overwrite)、
       重複しないプロパティはそのままトゥイーンを継続します。
+    </p>
+    <p>
+      Only the conflicting parts of an existing tween will be killed. 
+      If tween1 animates the x and rotation properties of a target 
+      and then tween2 starts animating only the x property of 
+      the same targets and overwrite: "auto" is set on the second tween, 
+      then the rotation part of tween1 will remain but the x part of it will be killed. 
     </p>
 
   </section><!-- #explain -->
